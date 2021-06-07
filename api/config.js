@@ -3,7 +3,7 @@ const rootPath = __dirname;
 
 module.exports = {
   rootPath,
-  uploadPath: path.join(rootPath, 'public/uploads'),
+  uploadPath: path.join(rootPath, 'public'),
   db: {
     url: 'mongodb://localhost/shop',
     options: {
@@ -13,10 +13,10 @@ module.exports = {
     },
   },
   facebook: {
-    appId: '516440226159473',
-    appSecret: '1b8e9090a97ea0b3a8013852a75ff68d',
+    appId: process.env.FACEBOOK_APP_ID,
+    appSecret: process.env.FACEBOOK_APP_SECRET,
   },
   google: {
-    clientId: process.env.GOOGLE_CLIENT_ID,
-  },
+    clientId: process.env.GOOGLE_CLIENT_ID
+  }
 };

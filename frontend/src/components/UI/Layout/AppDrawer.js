@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { Drawer, makeStyles, MenuItem, MenuList, Toolbar } from '@material-ui/core';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchCategoriesRequest } from '../../../store/actions/categoriesActions';
+import React, {useEffect} from 'react';
+import {Link, useParams} from "react-router-dom";
+import {Drawer, makeStyles, MenuItem, MenuList, Toolbar} from "@material-ui/core";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchCategoriesRequest} from "../../../store/actions/categoriesActions";
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
@@ -20,7 +20,7 @@ const AppDrawer = () => {
   const params = useParams();
   const classes = useStyles();
   const dispatch = useDispatch();
-  const categories = useSelector((state) => state.categories.categories);
+  const categories = useSelector(state => state.categories.categories);
 
   useEffect(() => {
     dispatch(fetchCategoriesRequest());
@@ -35,12 +35,16 @@ const AppDrawer = () => {
       variant="permanent"
       open
     >
-      <Toolbar />
+      <Toolbar/>
       <MenuList>
-        <MenuItem component={Link} to="/" selected={!params.id}>
+        <MenuItem
+          component={Link}
+          to="/"
+          selected={!params.id}
+        >
           All products
         </MenuItem>
-        {categories.map((category) => (
+        {categories.map(category => (
           <MenuItem
             key={category._id}
             component={Link}

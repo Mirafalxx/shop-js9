@@ -3,9 +3,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {Link as RouterLink} from 'react-router-dom';
 import {Avatar, Container, Grid, Link, makeStyles, Typography} from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import {registerUser} from "../../store/actions/usersActions";
+import {registerRequest} from "../../store/actions/usersActions";
 import FormElement from "../../components/UI/Form/FormElement";
 import ButtonWithProgress from "../../components/UI/ButtonWithProgress/ButtonWithProgress";
+import FileInput from "../../components/UI/Form/FileInput";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -37,6 +38,7 @@ const Register = () => {
     email: '',
     password: '',
     displayName: '',
+    avatar: null,
   });
 
   const error = useSelector(state => state.users.registerError);
@@ -48,10 +50,20 @@ const Register = () => {
     setUser(prev => ({...prev, [name]: value}));
   };
 
+  const fileChangeHandler = e => {
+    const name = e.target.name;
+    const file = e.target.files[0];
+
+    setUser(prevState => ({
+      ...prevState,
+      [name]: file
+    }));
+  };
+
   const submitFormHandler = e => {
     e.preventDefault();
 
-    dispatch(registerUser({...user}));
+    dispatch(registerRequest({...user}));
   };
 
   const getFieldError = fieldName => {
@@ -101,6 +113,14 @@ const Register = () => {
             value={user.displayName}
             error={getFieldError('displayName')}
           />
+          <Grid item xs>
+            <FileInput
+              name="avatar"
+              label="Avatar"
+              onChange={fileChangeHandler}
+              error={getFieldError('avatar')}
+            />
+          </Grid>
           <Grid item xs>
             <ButtonWithProgress
               type="submit"

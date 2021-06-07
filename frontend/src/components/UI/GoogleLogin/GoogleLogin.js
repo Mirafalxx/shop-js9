@@ -4,14 +4,13 @@ import {Button} from "@material-ui/core";
 import GoogleIcon from "../GoogleIcon/GoogleIcon";
 import GoogleLoginButton from "react-google-login";
 import {useDispatch} from "react-redux";
-import {googleLogin} from "../../../store/actions/usersActions";
+import {googleLoginRequest} from "../../../store/actions/usersActions";
 
 const GoogleLogin = () => {
   const dispatch = useDispatch();
 
   const handleLogin = response => {
-    console.log(response);
-    dispatch(googleLogin(response));
+    dispatch(googleLoginRequest(response));
   };
 
   return (

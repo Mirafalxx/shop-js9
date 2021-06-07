@@ -4,7 +4,7 @@ import {Link, useParams} from "react-router-dom";
 import {Button, CircularProgress, Grid, makeStyles, Typography} from "@material-ui/core";
 import ProductsLayout from "../../components/UI/Layout/ProductsLayout";
 import ProductItem from "./ProductItem";
-import {fetchProducts} from "../../store/actions/productsActions";
+import {fetchProductsRequest} from "../../store/actions/productsActions";
 import {Helmet} from "react-helmet";
 
 const useStyles = makeStyles(theme => ({
@@ -25,7 +25,7 @@ const Products = () => {
   const categoryName = currentCategory ? currentCategory.title : 'All products';
 
   useEffect(() => {
-    dispatch(fetchProducts(params.id));
+    dispatch(fetchProductsRequest(params.id));
   }, [dispatch, params.id]);
 
   return (

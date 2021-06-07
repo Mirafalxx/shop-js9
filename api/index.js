@@ -1,6 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-const cors = require('cors');
+const cors = require("cors");
 const products = require('./app/products');
 const categories = require('./app/categories');
 const users = require('./app/users');
@@ -26,11 +26,11 @@ const run = async () => {
     console.log(`Server started on ${port} port!`);
   });
 
-  exitHook(async (callback) => {
+  exitHook(async callback => {
     await mongoose.disconnect();
     console.log('mongoose disconnected');
     callback();
   });
-};
+}
 
 run().catch(console.error);

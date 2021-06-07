@@ -40,6 +40,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  avatar: String,
 });
 
 UserSchema.pre('save', async function(next) {

@@ -1,3 +1,7 @@
-import categoriesSlice from '../slices/categoriesSlice';
+import categoriesSlice from "../slices/categoriesSlice";
 
-export const { fetchCategoriesRequest, fetchCategoriesSuccess, fetchCategoriesFailure } = categoriesSlice.actions;
+export const {
+  fetchCategoriesRequest,
+  fetchCategoriesSuccess,
+  fetchCategoriesFailure,
+} = categoriesSlice.actions;

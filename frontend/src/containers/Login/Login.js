@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import { Avatar, Container, Grid, Link, makeStyles, Typography } from '@material-ui/core';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import FormElement from '../../components/UI/Form/FormElement';
-import { Link as RouterLink } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from '../../store/actions/usersActions';
-import { Alert, AlertTitle } from '@material-ui/lab';
-import ButtonWithProgress from '../../components/UI/ButtonWithProgress/ButtonWithProgress';
-// import FacebookLogin from '../../components/UI/FacebookLogin/FacebookLogin';
-import { Helmet } from 'react-helmet';
-import GoogleLogin from '../../components/UI/GoogleLogin/GoogleLogin';
+import React, {useState} from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import {Helmet} from "react-helmet";
+import {Link as RouterLink} from "react-router-dom";
+import {Avatar, Container, Grid, Link, makeStyles, Typography} from "@material-ui/core";
+import {Alert, AlertTitle} from "@material-ui/lab";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import FormElement from "../../components/UI/Form/FormElement";
+import ButtonWithProgress from "../../components/UI/ButtonWithProgress/ButtonWithProgress";
+import FacebookLogin from "../../components/UI/FacebookLogin/FacebookLogin";
+import GoogleLogin from "../../components/UI/GoogleLogin/GoogleLogin";
+import {loginRequest} from "../../store/actions/usersActions";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
@@ -20,39 +20,38 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.secondary.main
   },
   form: {
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(1)
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: theme.spacing(3, 0, 2)
   },
   header: {
-    marginBottom: theme.spacing(2),
-  },
+    marginBottom: theme.spacing(2)
+  }
 }));
 
 const Login = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [user, setUser] = useState({
-    email: '',
-    password: '',
+    email: '', password: ''
   });
-  const error = useSelector((state) => state.users.loginError);
-  const loading = useSelector((state) => state.users.loginLoading);
+  const error = useSelector(state => state.users.loginError);
+  const loading = useSelector(state => state.users.loginLoading);
 
-  const inputChangeHandler = (e) => {
-    const { name, value } = e.target;
+  const inputChangeHandler = e => {
+    const {name, value} = e.target;
 
-    setUser((prev) => ({ ...prev, [name]: value }));
+    setUser(prev => ({...prev, [name]: value}));
   };
 
-  const submitFormHandler = (e) => {
+  const submitFormHandler = e => {
     e.preventDefault();
 
-    dispatch(loginUser({ ...user }));
+    dispatch(loginRequest({...user}));
   };
 
   return (
@@ -62,7 +61,7 @@ const Login = () => {
       </Helmet>
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
+          <LockOutlinedIcon/>
         </Avatar>
         <Typography component="h1" variant="h5" className={classes.header}>
           Sign in
@@ -105,11 +104,11 @@ const Login = () => {
               Sign in
             </ButtonWithProgress>
           </Grid>
-          {/* <Grid item xs>
-            <FacebookLogin/>
-          </Grid> */}
           <Grid item xs>
-            <GoogleLogin />
+            <FacebookLogin/>
+          </Grid>
+          <Grid item xs>
+            <GoogleLogin/>
           </Grid>
           <Grid item container justify="flex-end">
             <Grid item>
